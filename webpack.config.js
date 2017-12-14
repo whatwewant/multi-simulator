@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'static/app.min.js',
-    publicPath: './'
+    publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
