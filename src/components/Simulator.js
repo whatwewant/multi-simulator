@@ -12,7 +12,9 @@ const Wrapper = styled.div`
   border-radius: 6px;
   box-shadow: 0px 0px 4px #ccc;
   overflow: hidden;
-  z-index: ${props => props.hover ? 1000 : 0};
+  z-index: ${props => props.hover};
+  pointer-events: auto;
+  background-color: #fff;
 `;
 
 const Header = styled.div`
@@ -122,6 +124,8 @@ export default class Simulator extends PureComponent {
 
   onClose = () => this.props.onClose(this.props.simulator);
 
+  onHover = () => this.props.simulator.toggleHover(this.props.maxHover);
+
   render() {
     const { x, y, title, site, width, height, simulator } = this.props;
     const { loaded, loading } = this.state;
@@ -132,7 +136,7 @@ export default class Simulator extends PureComponent {
         defaultPosition={{ x, y }}
       >
         <Wrapper width={width} hover={simulator.hover}>
-          <Header className="handle" onMouseEnter={simulator.toggleHover} onMouseLeave={simulator.toggleHover}>
+          <Header className="handle" onMouseEnter={this.onHover}>
             <Actions onClose={this.onClose} />
             <Title>{title} - {width} x {height}</Title>
           </Header>

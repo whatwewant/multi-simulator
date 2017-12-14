@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import nanoid from 'nanoid';
+import Debounce from 'lodash-decorators/debounce';
 
 export default class SimulatorModel {
   id = nanoid();
@@ -7,7 +8,7 @@ export default class SimulatorModel {
   @observable title;
   @observable site;
   @observable options;
-  @observable hover = false;
+  @observable hover = 0;
 
   constructor(title, site, options) {
     this.title = title;
@@ -15,8 +16,9 @@ export default class SimulatorModel {
     this.options = options;
   }
 
+  @Debounce(250)
   @action
-  toggleHover = () => {
-    this.hover = !this.hover;
+  toggleHover = (maxHover) => {
+    this.hover = (maxHover + 10) % 1000;
   }
 }

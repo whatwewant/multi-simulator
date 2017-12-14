@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider, inject, observer } from 'mobx-react';
-import DevTools from "mobx-react-devtools";
+// import DevTools from "mobx-react-devtools";
 
 import Panel from './components/Panel';
 import Simulator from './components/Simulator';
@@ -16,6 +16,7 @@ const store = new AppModel();
 class App extends React.PureComponent {
   render() {
     const simulators = this.props.store.simulators;
+    const maxHover = this.props.store.maxHover;
 
     return (
       <Panel>
@@ -29,6 +30,7 @@ class App extends React.PureComponent {
             title={simulator.title}
             site={simulator.site}
             simulator={simulator}
+            maxHover={maxHover}
           />
         ))}
       </Panel>
@@ -44,4 +46,4 @@ render(
 );
 
 // playing around in the console
-window.store = store;
+// window.store = store;
