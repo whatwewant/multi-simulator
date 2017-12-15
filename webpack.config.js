@@ -14,7 +14,8 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'static/[name].[hash:8].min.js',
     chunkFilename: 'static/[name].[chunkhash].chunk.js',
-    publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
+    // chunkFilename: 'static/[name].chunk.js',
+    publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   },
   target: 'web',
   plugins: [
@@ -85,13 +86,16 @@ module.exports = {
         // All chunks marked as `additional`, loaded after main section
         // and do not prevent SW to install. Change to `optional` if
         // do not want them to be preloaded at all (cached only when first loaded)
-        additional: ['*.chunk.js'],
+        // additional: ['*.chunk.js'],
       },
 
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
 
-      AppCache: false,
+      // AppCache: false,
+      AppCache: {
+        directory: './',
+      },
     })] : []),
   ],
   resolve: {

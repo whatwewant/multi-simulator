@@ -8,7 +8,6 @@ export default class Frame extends Component {
   render() {
     return (
       <iframe
-        sandbox="allow-scripts"
         {...this.props}
       />
     );

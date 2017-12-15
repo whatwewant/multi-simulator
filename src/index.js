@@ -1,16 +1,27 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider, inject, observer } from 'mobx-react';
+import Loadable from 'react-loadable';
 // import DevTools from "mobx-react-devtools";
 
-import Panel from './components/Panel';
-import Simulator from './components/Simulator';
+// import Panel from './components/Panel';
+// import Simulator from './components/Simulator';
 
 import AppModel from "./models/app";
 
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install();
 }
+
+const Panel = Loadable({
+  loader: () => import('./components/Panel'),
+  loading: () => null,
+});
+
+const Simulator = Loadable({
+  loader: () => import('./components/Simulator'),
+  loading: () => null,
+});
 
 const store = new AppModel();
 

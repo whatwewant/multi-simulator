@@ -105,8 +105,6 @@ const Site = styled(Frame)`
   height: 100%;
 `;
 
-let count = 0;
-
 @inject(stores => ({
   onClose: stores.store.removeSimulator,
 }))
@@ -133,8 +131,6 @@ export default class Simulator extends PureComponent {
   render() {
     const { x, y, title, site, width, height, simulator } = this.props;
     const { loaded, loading } = this.state;
-
-    console.log('render: ', ++count);
 
     return (
       <Draggable
