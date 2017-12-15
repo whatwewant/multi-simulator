@@ -10,7 +10,6 @@ import AppModel from "./models/app";
 
 const store = new AppModel();
 
-
 @inject('store')
 @observer
 class App extends React.PureComponent {

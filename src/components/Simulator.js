@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Spin from 'elfen-component-spinner/lib/components/beat';
 import Draggable from 'react-draggable';
 
+import Frame from './Frame';
+
 const Wrapper = styled.div`
   box-sizing: border-box;
   position: absolute;
@@ -96,12 +98,14 @@ const Actions = ({ onClose }) => (
   </ActionsWrapper>
 ); 
 
-const Site = styled.iframe`
+const Site = styled(Frame)`
   position: relative;
   border: none;
   width: 100%;
   height: 100%;
 `;
+
+let count = 0;
 
 @inject(stores => ({
   onClose: stores.store.removeSimulator,
@@ -129,6 +133,8 @@ export default class Simulator extends PureComponent {
   render() {
     const { x, y, title, site, width, height, simulator } = this.props;
     const { loaded, loading } = this.state;
+
+    console.log('render: ', ++count);
 
     return (
       <Draggable
