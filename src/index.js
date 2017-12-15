@@ -8,6 +8,10 @@ import Simulator from './components/Simulator';
 
 import AppModel from "./models/app";
 
+if (process.env.NODE_ENV === 'production') {
+  require('offline-plugin/runtime').install();
+}
+
 const store = new AppModel();
 
 @inject('store')
