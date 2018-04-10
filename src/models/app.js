@@ -14,6 +14,8 @@ export default class AppModel {
     new Simulator('Desktop', SITE, { x: 1149, y: 10, width: 500, height: 450 }),
   ];
 
+  @observable site = null;
+
   @Debounce(250)
   @computed
   get maxHover() {
@@ -29,5 +31,10 @@ export default class AppModel {
   @action
   removeSimulator = (simulator) => {
     this.simulators.remove(simulator);
+  }
+
+  @action
+  updateSite = site => {
+    this.site = site;
   }
 }

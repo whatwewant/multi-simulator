@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import Spin from 'elfen-component-spinner/lib/components/beat';
+import Debounce from 'lodash-decorators/debounce'; 
 import Draggable from 'react-draggable';
 
 import Frame from './Frame';
@@ -128,6 +129,11 @@ export default class Simulator extends PureComponent {
 
   onHover = () => this.props.simulator.toggleHover(this.props.maxHover);
 
+  @Debounce(250)
+  onDrag = () => {
+    console.log(1);
+  };
+
   render() {
     const { x, y, title, site, width, height, simulator } = this.props;
     const { loaded, loading } = this.state;
@@ -136,6 +142,7 @@ export default class Simulator extends PureComponent {
       <Draggable
         handle=".handle"
         defaultPosition={{ x, y }}
+        onDrag={this.onDrag}
       >
         <Wrapper width={width} hover={simulator.hover}>
           <Header className="handle" onMouseEnter={this.onHover}>

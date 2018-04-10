@@ -21,4 +21,10 @@ export default class SimulatorModel {
   toggleHover = (maxHover) => {
     this.hover = (maxHover + 10) % 1000;
   }
+
+  @Debounce(250)
+  @action
+  updateSite = site => {
+    this.site = site;
+  }
 }
